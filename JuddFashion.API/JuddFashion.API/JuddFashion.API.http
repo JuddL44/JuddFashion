@@ -1,0 +1,6 @@
+@JuddFashion.API_HostAddress = http://localhost:5191
+
+GET {{JuddFashion.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
