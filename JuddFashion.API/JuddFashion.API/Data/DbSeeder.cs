@@ -15,7 +15,7 @@ namespace JuddFashion.API.Data
                     Name = "Snorlax Hoodie",
                     Description = "100% cotton hoodie with Snorlax design",
                     BasePrice = 59.99m,
-                    Category = ClothingCategory.Tops,
+                    Category = ClothingCategory.Outerwear,
                     Brand = "Pokemon Apparel",
                     ImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSZcx35C-L-DYnRy2mxelYAF6ama_BnPZVKw&s",
                     IsActive = true,
