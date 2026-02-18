@@ -23,9 +23,16 @@ namespace JuddFashion.API.Controllers
         [HttpGet("{id}")] // - /api/products/(id)
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var product = await _context.Products.Include(p => p.Variants).FirstOrDefaultAsync(p => p.Id == id);
+            var product = await _context.Products.Include(p => p.Variants).FirstOrDefaultAsync(p => p.Id == id && p.IsActive);
             if (product == null) { return NotFound(); }
             return Ok(product);
+        }
+
+        [HttpGet("category/{category}")] // - /api/products/category/(category)
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(ClothingCategory category)
+        {
+            var products = await _context.Products.Include(p => p.Variants).Where(p => p.Category == category && p.IsActive).ToListAsync();
+            return Ok(products);
         }
 
 
