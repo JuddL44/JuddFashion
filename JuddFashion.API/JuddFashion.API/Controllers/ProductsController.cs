@@ -1,5 +1,7 @@
-﻿using JuddFashion.API.Data;
+﻿using AutoMapper;
+using JuddFashion.API.Data;
 using JuddFashion.API.Models;
+using JuddFashion.API.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,29 +12,37 @@ namespace JuddFashion.API.Controllers
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public ProductsController(ApplicationDbContext context) { _context = context; }
+        private readonly IMapper _mapper;
+        public ProductsController(ApplicationDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
 
         // GET
         [HttpGet] // - /api/products
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<ProductDTO>>> GetProducts()
         {
             var products = await _context.Products.Include(p => p.Variants).Where(p => p.IsActive).ToListAsync();
-            return Ok(products);
+            var productDTOs = _mapper.Map<List<ProductDTO>>(products);
+            return Ok(productDTOs);
         }
 
         [HttpGet("{id}")] // - /api/products/(id)
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<ProductDTO>> GetProduct(int id)
         {
             var product = await _context.Products.Include(p => p.Variants).FirstOrDefaultAsync(p => p.Id == id && p.IsActive);
             if (product == null) { return NotFound(); }
-            return Ok(product);
+            var productDTO = _mapper.Map<ProductDTO>(product);
+            return Ok(productDTO);
         }
 
         [HttpGet("category/{category}")] // - /api/products/category/(category)
-        public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(ClothingCategory category)
+        public async Task<ActionResult<IEnumerable<ProductDTO>>> GetProductsByCategory(ClothingCategory category)
         {
             var products = await _context.Products.Include(p => p.Variants).Where(p => p.Category == category && p.IsActive).ToListAsync();
-            return Ok(products);
+            var productDTOs = _mapper.Map<List<ProductDTO>>(products);
+            return Ok(productDTOs);
         }
 
 
