@@ -4,6 +4,7 @@ using JuddFashion.API.Models;
 using JuddFashion.API.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace JuddFashion.API.Controllers
 {
@@ -42,6 +43,40 @@ namespace JuddFashion.API.Controllers
         {
             var products = await _context.Products.Include(p => p.Variants).Where(p => p.Category == category && p.IsActive).ToListAsync();
             var productDTOs = _mapper.Map<List<ProductDTO>>(products);
+            return Ok(productDTOs);
+        }
+
+        [HttpGet("search")] // - /api/products/search?query=(query)&category=(category)&sortBy=(sortBy)
+        public async Task<ActionResult<IEnumerable<ProductDTO>>> SearchProducts([FromQuery] string? query, [FromQuery] ClothingCategory? category, [FromQuery] string? sortBy) {
+
+            var productsQuery = _context.Products.Include(p => p.Variants).Where(p => p.IsActive);
+            
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                productsQuery = productsQuery.Where(p =>
+                    p.Name.ToLower().Contains(query.ToLower()) ||
+                    p.Description.ToLower().Contains(query.ToLower()) ||
+                    p.Brand.ToLower().Contains(query.ToLower())
+                );
+            }
+
+            if (category.HasValue)
+            {
+                productsQuery = productsQuery.Where(p => p.Category == category.Value);
+            }
+
+            productsQuery = sortBy?.ToLower() switch
+            {
+                "price_asc" => productsQuery.OrderBy(p => p.BasePrice),
+                "price_desc" => productsQuery.OrderByDescending(p => p.BasePrice),
+                "name" => productsQuery.OrderBy(p => p.Name),
+                "newest" => productsQuery.OrderByDescending(p => p.DateAdded),
+                _ => productsQuery.OrderBy(p => p.Id)
+            };
+
+            var products = await productsQuery.ToListAsync();
+            var productDTOs = _mapper.Map<List<ProductDTO>>(products);
+
             return Ok(productDTOs);
         }
 
