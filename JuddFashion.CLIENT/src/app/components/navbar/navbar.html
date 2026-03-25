@@ -1,16 +1,16 @@
 <nav class="navbar">
   <div class="navbar-container">
-
     <div class="navbar-brand">
       <a routerLink="/">{{ brandName }}</a>
       <nav class ="navbar-motto">{{ motto }}</nav>
     </div>
     
-
     <ul class="navbar-links">
-      <li *ngFor="let link of navLinks">
-        <a [routerLink]="link.path">{{ link.label }}</a>
-      </li>
+      @for (link of navLinks; track link.path) {
+        <li>
+          <a [routerLink]="link.path">{{ link.label }}</a>
+        </li>
+      }
     </ul>
     
     <div class="navbar-actions">
@@ -33,9 +33,11 @@
   
   <div class="mobile-menu" [class.open]="menuOpen">
     <ul>
-      <li *ngFor="let link of navLinks">
-        <a [routerLink]="link.path" (click)="toggleMenu()">{{ link.label }}</a>
-      </li>
+      @for (link of navLinks; track link.path) {
+        <li>
+          <a [routerLink]="link.path" (click)="toggleMenu()">{{ link.label }}</a>
+        </li>
+      }
     </ul>
   </div>
 </nav>

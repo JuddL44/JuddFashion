@@ -145,6 +145,80 @@ namespace JuddFashion.API.Data
                         }
                     }
                 },
+                new Product 
+                {
+                    Name = "566 Cloud 9 Hoodie",
+                    Description = "80% fleece cotton hoodie, relaxed fit",
+                    BasePrice = 79.99m,
+                    Category = ClothingCategory.Outerwear,
+                    Brand = "YoungLA",
+                    ImageUrl = "https://www.youngla.com/cdn/shop/files/YLA_9.246_ff5e92e2-e20f-4caa-ba46-8f34d9aff1e0.jpg?v=1700261990&width=1421",
+                    IsActive = true,
+                    Variants = new List<ProductVariant>
+                    {
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.S,
+                            Color = "Light Blue",
+                            SKU = "LA-CLOUD-BLUE-S",
+                            StockQuantity = 1,
+                            PriceAdjustment = 0m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.M,
+                            Color = "Light Blue",
+                            SKU = "LA-CLOUD-BLUE-M",
+                            StockQuantity = 16,
+                            PriceAdjustment = 0m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.L,
+                            Color = "Light Blue",
+                            SKU = "LA-CLOUD-BLUE-L",
+                            StockQuantity = 8,
+                            PriceAdjustment = 4m
+                        }
+                    }
+                },
+                new Product
+                {
+                    Name = "Dark Olive T",
+                    Description = "Minimalist dark green t-shirt, 100% cotton",
+                    BasePrice = 12.99m,
+                    Category = ClothingCategory.Tops,
+                    Brand = "BIG BUD PRESS",
+                    ImageUrl = "https://bigbudpress.com/cdn/shop/files/01ECOMMORGANICTEEALEXSWAMPPBYMORGAN2-9-2613766.png?v=1772037103",
+                    IsActive = true,
+                    Variants = new List<ProductVariant>
+                    {
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.S,
+                            Color = "Dark Olive",
+                            SKU = "BBP-DOT-DO-S",
+                            StockQuantity = 5,
+                            PriceAdjustment = 0m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.M,
+                            Color = "Dark Olive",
+                            SKU = "BBP-DOT-DO-M",
+                            StockQuantity = 11,
+                            PriceAdjustment = 1m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.L,
+                            Color = "Dark Olive",
+                            SKU = "BBP-DOT-DO-L",
+                            StockQuantity = 4,
+                            PriceAdjustment = 2m
+                        }
+                    }
+                },
                 new Product
                 {
                     Name = "Navy Slim Jeans",

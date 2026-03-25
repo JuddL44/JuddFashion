@@ -1,0 +1,41 @@
+<div class="home-container">
+  <section class="hero" [style.background]="'linear-gradient(335deg, #978EF5 7%, #57C1C7 62%, #F7A1BF 100%)'">
+    <div class="hero-content">
+      <h1>{{ heroTitle }}</h1>
+      <p>{{ heroSubtitle }}</p>
+      <div class ="cta-button-container">
+        <button class="cta-button" (click)="loadFilterTabProducts('All')">All</button>
+        <button class="cta-button" (click)="loadFilterTabProducts('Tops')">Tops</button>
+        <button class="cta-button" (click)="loadFilterTabProducts('Outerwear')">Outerwear</button>
+        <button class="cta-button" (click)="loadFilterTabProducts('Bottoms')">Bottoms</button>
+        <button class="cta-button" (click)="loadFilterTabProducts('Footwear')">Footwear</button>
+        <button class="cta-button" (click)="loadFilterTabProducts('Accessories')">Accessories</button>
+      </div>
+    </div>
+</section>
+
+
+  <section class="featured">
+    <h2>{{ currentProductDisplay }}</h2>
+    <div class="featured-grid">
+    <div class="product-card" *ngFor="let product of featuredProducts; let i = index">
+      <img [src]="product.imageUrl" [alt]="product.name" />
+
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <button class="view-button">View Item</button>
+      </div>
+    </div>
+  </div>
+    <div class="load-more-products-page">
+     @if(containsMoreFeatured === true) 
+     {
+    <button class="load-more-products" (click)="loadMoreProducts()">View More</button>
+     } @else 
+     {
+    <div class="out-of-products">That's all for here.</div>
+     }
+  </div>
+  </section>
+</div>

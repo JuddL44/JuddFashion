@@ -1,32 +1,8 @@
 import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Product, ProductVariant } from '../../models/product';
 
-interface ProductVariant {
-  id: number;
-  size: string;
-  color: string;
-  sku: string;
-  stockQuantity: number;
-  priceAdjustment: number;
-  finalPrice: number;
-  inStock: boolean;
-}
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  basePrice: number;
-  category: string;
-  brand: string;
-  imageUrl: string;
-  dateAdded: string;
-  variants: ProductVariant[];
-  totalStock: number;
-  isAvailable: boolean;
-  availableColors: string[];
-  availableSizes: string[];
-}
 
 @Component({
   selector: 'app-home',
