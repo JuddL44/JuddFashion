@@ -1,0 +1,29 @@
+<div class="home-container">
+  <section class="hero">
+    <div class="hero-content">
+      <h1>{{ heroTitle }}</h1>
+      <p>{{ heroSubtitle }}</p>
+      <div class ="cta-button-container">
+        <button class="cta-button">Shop Now</button>
+        <button class="cta-button">My Account</button>
+        <button class="cta-button">About Site</button>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="featured">
+    <h2>Featured Items : {{ featuredProducts.length }}</h2>
+    <div class="featured-grid">
+    <div class="product-card" *ngFor="let product of featuredProducts; let i = index">
+      <img [src]="product.imageUrl" [alt]="product.name" />
+
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <button class="view-button">View Item</button>
+      </div>
+    </div>
+  </div>
+  </section>
+</div>
