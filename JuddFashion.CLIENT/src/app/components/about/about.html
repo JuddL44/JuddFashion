@@ -1,0 +1,30 @@
+<div class="home-container">
+  <section class="hero about" [style.background]="'linear-gradient(228deg, #A55BD4 7%, #15E2ED 77%, #FCAECB 100%)'">
+    <div class="hero-content">
+      <h1>{{ heroTitle }}</h1>
+      <p>{{ heroSubtitle }}</p>
+      <div class="bio-container">
+        <div class="bio">
+            This website is built using
+            <div class="highlighted">Angular 20 & ASP.NET Core with EF</div>
+            to simulate a modern online clothing website.
+            Developed as a full-stack portfolio project.
+            
+        </div>
+      </div>
+      <div class ="icon-holder">
+        <button class="icon" (click)="openLink('http://github.com/JuddL44/')">
+            <img src="/icons/logo-git.png" alt="Logo">
+        </button>
+        <button class="icon" (click)="openLink('https://store.steampowered.com/search/?developer=Judd')">
+            <img src="/icons/logo-steam.png" alt="Logo">
+        </button>
+        <button class="icon" (click)="openLink('https://www.linkedin.com/in/judd-lasater-54a29a38a/')">
+            <img src="/icons/logo-li.png" alt="Logo">
+        </button>
+        <button class="icon" (click)="openLink('https://x.com/flcmedev')">
+            <img src="/icons/logo-x.png" alt="Logo">
+        </button>
+      </div>
+    </div>
+</section>
