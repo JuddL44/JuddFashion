@@ -1,0 +1,33 @@
+.info-holder {
+    margin-top: 0.75rem;
+    width: 100%;        
+    padding: 1rem 2rem; 
+    font-size: 1rem;
+    background: #1a1a1a;
+    align-items: center;
+    text-align: center;
+    color: white;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.info-title {
+    font-size: 1.3rem;
+    width: 100px;
+    text-align: left;
+}
+.info-center-emoji {
+    font-size: 2rem;
+    width: 50px;
+    text-align: center;
+}
+.info-input {
+    font-size: 1rem;
+    padding-left: 2rem;
+    flex: 1;
+    text-align: left;
+}

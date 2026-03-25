@@ -29,6 +29,13 @@ html, body {
     align-items: flex-start;
     padding-top: 4rem;
   }
+
+    &.contact {
+    background: linear-gradient(341deg, #ACA5FA 0%, #2BBCD9 48%, #FF54C0 100%);
+    height: 900px;
+    align-items: flex-start;
+    padding-top: 4rem;
+  }
   .hero-content {
     h1 {
       font-size: 3rem;
