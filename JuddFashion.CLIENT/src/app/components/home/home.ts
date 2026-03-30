@@ -20,20 +20,20 @@ export class Home implements OnInit {
   heroSubtitle: string = 'Premium streetwear & accessories';
   featuredItemCount: number = 3;
   featuredProducts: Product[] = [];
+  isLoading: boolean = false;
   
   ngOnInit() {
     this.loadRandomFeaturedItems();
   }
   
   loadRandomFeaturedItems() {
-    console.log('Starting to fetch products...');
-  
+  this.isLoading = true;
   this.http.get<Product[]>('http://localhost:5191/api/products').subscribe({
     next: (products) => {
       const shuffled = products.sort(() => 0.5 - Math.random());
       this.featuredProducts = shuffled.slice(0, 3);
       this.cdr.detectChanges();
-      console.log(this.featuredProducts);
+      this.isLoading = false;
   }});
   }
 }

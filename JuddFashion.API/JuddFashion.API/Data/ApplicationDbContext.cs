@@ -12,6 +12,7 @@ namespace JuddFashion.API.Data
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductVariant> ProductVariants { get; set; }
+        public DbSet<User> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -30,6 +31,16 @@ namespace JuddFashion.API.Data
                 entity.Property(v => v.Color).IsRequired().HasMaxLength(30);
                 entity.Property(v => v.PriceAdjustment).HasColumnType("decimal(18,2)");
                 entity.HasIndex(v => v.SKU).IsUnique();
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.Property(u => u.Username).IsRequired().HasMaxLength(24);
+                entity.Property(u => u.Email).IsRequired().HasMaxLength(100);
+                entity.Property(u => u.PasswordHash).IsRequired();
+
+                entity.HasIndex(u => u.Username).IsUnique();
+                entity.HasIndex(u => u.Email).IsUnique();
             });
         }
     }

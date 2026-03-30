@@ -14,6 +14,7 @@
 
   <section class="featured">
     <h2>Featured Items : {{ featuredProducts.length }}</h2>
+    @if(!isLoading) {
     <div class="featured-grid">
     <div class="product-card" *ngFor="let product of featuredProducts; let i = index">
       <img [src]="product.imageUrl" [alt]="product.name" />
@@ -25,5 +26,13 @@
       </div>
     </div>
   </div>
+  }
+  @else {
+  <div class="spinner-container">
+    <div class="spinner"></div>
+  </div>
+}
   </section>
+  
 </div>
+
