@@ -4,17 +4,37 @@
       <h1>{{ heroTitle }}</h1>
       <p>{{ heroSubtitle }}</p>
       <div class ="cta-button-container">
-        <button class="cta-button" (click)="loadFilterTabProducts('All')">All</button>
-        <button class="cta-button" (click)="loadFilterTabProducts('Tops')">Tops</button>
-        <button class="cta-button" (click)="loadFilterTabProducts('Outerwear')">Outerwear</button>
-        <button class="cta-button" (click)="loadFilterTabProducts('Bottoms')">Bottoms</button>
-        <button class="cta-button" (click)="loadFilterTabProducts('Footwear')">Footwear</button>
-        <button class="cta-button" (click)="loadFilterTabProducts('Accessories')">Accessories</button>
+        @for(tab of allProductTabs; track $index) 
+        {
+          @if(tab === currentProductCategory || tab === "All" && currentProductCategory === "All Products")
+          {
+          <button class="cta-button" (click)="applyFilter(tab, `filter`)" style="background-color:#EED4FF; color: #2A87C5; border-radius: 13px">{{tab}}</button>
+          }
+          @else 
+          {
+            <button class="cta-button" (click)="applyFilter(tab, `filter`)">{{tab}}</button>
+          }
+        }
+      </div>
+      <input type="text" (keyup.enter)="applyFilter($event.target.value, 'search')" maxLength="64" id="myInput" class="textbox" placeholder="Search..." />
+      
+      <div class ="sort-by-container">
+        @if(this.currentProductSort === "price_asc") { <button class="sort-by-button" style="background-color:#EED4FF; color: #2A87C5; border-radius: 13px" (click)="applyFilter(`price_asc`, `sort`)">Price ⬆️</button> }
+        @else { <button class="sort-by-button" (click)="applyFilter(`price_asc`, `sort`)">Price ⬆️</button> }
+
+        @if(this.currentProductSort === "price_desc") { <button class="sort-by-button" style="background-color:#EED4FF; color: #2A87C5; border-radius: 13px" (click)="applyFilter(`price_desc`, `sort`)">Price ⬇️</button> }
+        @else { <button class="sort-by-button" (click)="applyFilter(`price_desc`, `sort`)">Price ⬇️</button> }
+
+        @if(this.currentProductSort === "name") { <button class="sort-by-button" style="background-color:#EED4FF; color: #2A87C5; border-radius: 13px" (click)="applyFilter(`name`, `sort`)">Name</button> }
+        @else { <button class="sort-by-button" (click)="applyFilter(`name`, `sort`)">Name</button> }
+
+        @if(this.currentProductSort === "newest") { <button class="sort-by-button" style="background-color:#EED4FF; color: #2A87C5; border-radius: 13px" (click)="applyFilter(`newest`, `sort`)">Newest</button> }
+        @else { <button class="sort-by-button" (click)="applyFilter(`newest`, `sort`)">Newest</button> }
       </div>
     </div>
 </section>
 
-
+ @if(!isLoading) {
   <section class="featured">
     <h2>{{ currentProductDisplay }}</h2>
     <div class="featured-grid">
@@ -38,4 +58,10 @@
      }
   </div>
   </section>
+}
+@else {
+  <div class="spinner-container">
+    <div class="spinner"></div>
+  </div>
+}
 </div>
