@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+
 body {
   margin: 0;
   padding: 0;
@@ -23,19 +24,25 @@ html, body {
   color: white;
   text-align: center;
 
-  &.about {
+  &.extended {
     background: linear-gradient(335deg, #978EF5 7%, #57C1C7 62%, #F7A1BF 100%);
     height: 900px;
     align-items: flex-start;
     padding-top: 4rem;
   }
 
-    &.contact {
+&.flow {
+  background: radial-gradient(circle, hsla(260, 100%, 90%, 1) 0%, hsla(15, 26%, 88%, 1) 19%, hsla(200, 100%, 85%, 1) 35%, hsla(193, 59%, 66%, 1) 63%, hsla(323, 100%, 92%, 1) 84%, hsla(56, 83%, 82%, 1) 100%);
+  background-size: 800% 800%;
+  animation: gradientFlow 100s ease infinite;
+}
+
+&.contact {
     background: linear-gradient(341deg, #ACA5FA 0%, #2BBCD9 48%, #FF54C0 100%);
     height: 900px;
     align-items: flex-start;
     padding-top: 4rem;
-  }
+}
 
 
 
@@ -74,7 +81,11 @@ html, body {
     }
   }
 
-
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
   
   
 }
