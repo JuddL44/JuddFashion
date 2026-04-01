@@ -75,10 +75,16 @@ html, body {
     padding-top: 4rem;
   }
 
-&.flow {
+&.flow-sign-in {
   background: radial-gradient(circle, hsla(260, 100%, 90%, 1) 0%, hsla(15, 26%, 88%, 1) 19%, hsla(200, 100%, 85%, 1) 35%, hsla(193, 59%, 66%, 1) 63%, hsla(323, 100%, 92%, 1) 84%, hsla(56, 83%, 82%, 1) 100%);
   background-size: 800% 800%;
   animation: gradientFlow 100s ease infinite;
+}
+
+&.flow-product {
+  background: radial-gradient(circle, hsla(196, 100%, 74%, 1) 0%, hsla(58, 77%, 50%, 1) 20%, hsla(242, 100%, 87%, 1) 37%, hsla(149, 78%, 77%, 1) 63%, hsla(281, 100%, 79%, 1) 100%);
+  background-size: 800% 800%;
+  animation: gradientFlow 60s ease infinite;
 }
 
 &.contact {

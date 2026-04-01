@@ -38,14 +38,16 @@
   <section class="featured">
     <h2>{{ currentProductDisplay }}</h2>
     <div class="featured-grid">
-    <div class="product-card" *ngFor="let product of featuredProducts; let i = index">
-      <img [src]="product.imageUrl" [alt]="product.name" />
+      @for(product of featuredProducts; track $index) {
+    <div class="product-card" [routerLink]="['/product/', product.id]">
+        <img [src]="product.imageUrl" [alt]="product.name" />
 
-      <div class="product-info">
-        <h3>{{ product.name }}</h3>
-        <p>{{ product.description }}</p>
-      </div>
+        <div class="product-info">
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+        </div>
     </div>
+  }
   </div>
     <div class="load-more-products-page">
      @if(containsMoreFeatured === true) 

@@ -2,13 +2,14 @@ import { Component, OnInit, inject, ChangeDetectorRef, booleanAttribute } from '
 import { CommonModule } from '@angular/common';
 import { Product, ProductVariant } from '../../models/product';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { RouterLink, RouterModule } from "@angular/router";
 
 
 
 @Component({
   selector: 'app-shop',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, RouterLink, RouterModule],
   templateUrl: './shop.html',
   styleUrl: './shop.scss',
 })

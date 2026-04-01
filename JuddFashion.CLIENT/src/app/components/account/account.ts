@@ -24,7 +24,7 @@ export class Account {
   accountTypeDisplay: string = 'Account Sign-In';
 
   loading: boolean = false; 
-  signInSelected: boolean = false;
+  signInSelected: boolean = true;
   isSignedIn: boolean = false;
 
   savedEmail: string = '';
