@@ -3,7 +3,7 @@
     <div class="hero-content">
       <h1>{{ heroTitle }}</h1>
       <p>{{ heroSubtitle }}</p>
-      <div class ="cta-button-container">
+      <div class="cta-button-container">
         <button class="cta-button" routerLink="/shop">Shop Now</button>
         <button class="cta-button">My Account</button>
         <button class="cta-button" routerLink="/about">About Site</button>
@@ -11,27 +11,25 @@
     </div>
   </section>
 
-
   <section class="featured">
     <h2>Featured Items : {{ featuredProducts.length }}</h2>
-    @if(!isLoading) {
-    <div class="featured-grid">
-    <div class="product-card" *ngFor="let product of featuredProducts; let i = index">
-      <img [src]="product.imageUrl" [alt]="product.name" />
+    @if (!isLoading) {
+      <div class="featured-grid">
+        @for (product of featuredProducts; track $index) {
+          <div class="product-card" [routerLink]="['/product/', product.id]">
+            <img [src]="product.imageUrl" [alt]="product.name" />
 
-      <div class="product-info">
-        <h3>{{ product.name }}</h3>
-        <p>{{ product.description }}</p>
+            <div class="product-info">
+              <h3>{{ product.name }}</h3>
+              <p>{{ product.description }}</p>
+            </div>
+          </div>
+        }
       </div>
-    </div>
-  </div>
-  }
-  @else {
-  <div class="spinner-container">
-    <div class="spinner"></div>
-  </div>
-}
+    } @else {
+      <div class="spinner-container">
+        <div class="spinner"></div>
+      </div>
+    }
   </section>
-  
 </div>
-

@@ -11,7 +11,6 @@
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public bool IsActive { get; set; } = true;
 
-        // Navigation properties for potential future features :)
         // public ICollection<Order> Orders { get; set; } = new List<Order>();
     }
 }

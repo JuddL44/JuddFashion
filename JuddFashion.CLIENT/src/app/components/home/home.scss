@@ -3,7 +3,6 @@
   padding-bottom: 1rem;
 }
 
-
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -33,17 +32,16 @@
   max-width: 1400px;
   margin: 4rem auto;
   padding: 0 2rem;
-  
+
   h2 {
     font-size: 2rem;
     margin-bottom: 2rem;
     text-align: center;
   }
-.featured-grid {
+  .featured-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
     gap: 1.5rem;
     justify-content: center;
   }
-
 }

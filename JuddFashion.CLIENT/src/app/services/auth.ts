@@ -5,7 +5,6 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-
 export class Auth {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:5191/api/auth';
@@ -17,46 +16,45 @@ export class Auth {
     this.loadUserFromToken();
   }
 
-private loadUserFromToken()
-{
-  const token = this.getToken();
-  if (token)
-  {
-    try {
+  private loadUserFromToken() {
+    const token = this.getToken();
+    if (token) {
+      try {
         const payload = JSON.parse(atob(token.split('.')[1]));
         console.log('JWT Payload:', payload);
         const user: User = {
-          id: parseInt(payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']),
+          id: parseInt(
+            payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'],
+          ),
           username: payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
           email: payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'],
-          createdAt: payload.createdAt
+          createdAt: payload.createdAt,
         };
         console.log('Parsed user:', user);
         this.currentUserSubject.next(user);
       } catch (error) {
         this.logout();
       }
+    }
   }
-}
-
 
   register(username: string, email: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/register`, {
-      username,
-      email,
-      password
-    }).pipe(
-      tap(response => this.handleAuthResponse(response))
-    );
+    return this.http
+      .post<AuthResponse>(`${this.apiUrl}/register`, {
+        username,
+        email,
+        password,
+      })
+      .pipe(tap((response) => this.handleAuthResponse(response)));
   }
 
   login(email: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/login`, {
-      email,
-      password
-    }).pipe(
-      tap(response => this.handleAuthResponse(response))
-    );
+    return this.http
+      .post<AuthResponse>(`${this.apiUrl}/login`, {
+        email,
+        password,
+      })
+      .pipe(tap((response) => this.handleAuthResponse(response)));
   }
 
   logout() {
@@ -81,7 +79,6 @@ private loadUserFromToken()
     return this.currentUserSubject.value;
   }
 }
-
 
 interface User {
   id: number;

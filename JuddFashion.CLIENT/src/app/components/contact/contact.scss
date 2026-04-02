@@ -1,38 +1,38 @@
 .info-holder {
-    margin-top: 0.75rem;
-    width: 100%;        
-    padding: 1rem 2rem; 
-    font-size: 1rem;
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    align-items: center;
-    text-align: center;
-    color: white;
-    border: none;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    border-radius: 8px;
-    font-weight: 600;
+  margin-top: 0.75rem;
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  text-align: center;
+  color: white;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-radius: 8px;
+  font-weight: 600;
 }
 
 .info-title {
-    font-size: 1.3rem;
-    width: 100px;
-    text-align: left;
+  font-size: 1.3rem;
+  width: 100px;
+  text-align: left;
 }
 .info-center-emoji {
-    font-size: 2rem;
-    width: 50px;
-    text-align: center;
+  font-size: 2rem;
+  width: 50px;
+  text-align: center;
 }
 .info-input {
-    font-size: 1rem;
-    padding-left: 2rem;
-    flex: 1;
-    text-align: left;
+  font-size: 1rem;
+  padding-left: 2rem;
+  flex: 1;
+  text-align: left;
 }

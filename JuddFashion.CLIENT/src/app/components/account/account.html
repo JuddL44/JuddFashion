@@ -1,65 +1,104 @@
 <div class="home-container">
   <section class="hero extended flow-sign-in">
-    @if(!isSignedIn) {
-  <div class="login-container backplate">
-    {{accountTypeDisplay}}
-    <div class="button-container">
-        @if(signInSelected) {
-        <div class="button enhanced" (click)="ChangeRegisterType(false)">Log In</div>
-        <div class="button " (click)="ChangeRegisterType(true)">Register</div>
+    @if (!isSignedIn) {
+      <div class="login-container backplate">
+        {{ accountTypeDisplay }}
+        <div class="button-container">
+          @if (signInSelected) {
+            <div class="button enhanced" (click)="ChangeRegisterType(false)">Log In</div>
+            <div class="button" (click)="ChangeRegisterType(true)">Register</div>
+          } @else {
+            <div class="button" (click)="ChangeRegisterType(false)">Log In</div>
+            <div class="button enhanced" (click)="ChangeRegisterType(true)">Register</div>
+          }
+        </div>
+        @if (signInSelected) {
+          <div class="input-container">
+            Email
+            <input
+              type="text"
+              maxLength="64"
+              [(ngModel)]="email"
+              id="myInput"
+              class="textbox"
+              placeholder="Enter Email"
+            />
+          </div>
+          <div class="input-container">
+            Password
+            <input
+              type="password"
+              maxLength="64"
+              [(ngModel)]="password"
+              id="myInput"
+              class="textbox"
+              placeholder="Enter Password"
+            />
+          </div>
+        } @else {
+          <div class="input-container slim">
+            Email
+            <input
+              type="text"
+              [(ngModel)]="email"
+              maxLength="64"
+              id="myInput"
+              class="textbox slim"
+              placeholder="Enter Email"
+            />
+          </div>
+          <div class="input-container slim">
+            Username
+            <input
+              type="text"
+              maxLength="64"
+              [(ngModel)]="username"
+              id="myInput"
+              class="textbox slim"
+              placeholder="Enter Username"
+            />
+          </div>
+          <div class="input-container slim extended">
+            Password
+            <input
+              type="password"
+              maxLength="64"
+              [(ngModel)]="password"
+              id="myInput"
+              class="textbox slim password"
+              placeholder="Enter Password"
+            />
+            <input
+              type="password"
+              maxLength="64"
+              [(ngModel)]="confirmPassword"
+              id="myInput"
+              class="textbox slim password"
+              placeholder="Confirm Password"
+            />
+          </div>
         }
-        @else {
-        <div class="button" (click)="ChangeRegisterType(false)">Log In</div>
-        <div class="button enhanced" (click)="ChangeRegisterType(true)" >Register</div>
-        }
-    </div>
-    @if(signInSelected) 
-    {
-    <div class="input-container">
-    Email
-    <input type="text" maxLength="64" [(ngModel)]="email" id="myInput" class="textbox" placeholder="Enter Email" />
-    </div>
-    <div class="input-container">
-    Password
-    <input type="password" maxLength="64" [(ngModel)]="password" id="myInput" class="textbox" placeholder="Enter Password" />
-    </div>
-    }
-    @else 
-    {
-    <div class="input-container slim">
-        Email
-        <input type="text" [(ngModel)]="email" maxLength="64" id="myInput" class="textbox slim" placeholder="Enter Email" />
-    </div>
-    <div class="input-container slim">
-        Username
-        <input type="text" maxLength="64" [(ngModel)]="username" id="myInput" class="textbox slim" placeholder="Enter Username" />
-    </div>
-    <div class="input-container slim extended">
-        Password
-        <input type="password" maxLength="64" [(ngModel)]="password" id="myInput" class="textbox slim password" placeholder="Enter Password" />
-        <input type="password" maxLength="64" [(ngModel)]="confirmPassword" id="myInput" class="textbox slim password" placeholder="Confirm Password" />
-    </div>
-    }
-    <div class="button-container">
-        <div class="button extended enhanced" (click)="signInSelected ? OnLogin() : OnRegister()">{{completeString}}</div>
-    </div>
-  </div>
-}
-@else {
-    <div class="login-container backplate column">
-        <div class="button-container textonly">Hello {{savedUsername}}!</div>
+        <div class="button-container">
+          <div class="button extended enhanced" (click)="signInSelected ? OnLogin() : OnRegister()">
+            {{ completeString }}
+          </div>
+        </div>
+      </div>
+    } @else {
+      <div class="login-container backplate column">
+        <div class="button-container textonly">Hello {{ savedUsername }}!</div>
         <div class="stats-container">
-            <div class="stats-stat">Account Creation</div>
-            <div class="stats-value">{{savedDate | date:'short'}}</div>
+          <div class="stats-stat">Account Creation</div>
+          <div class="stats-value">{{ savedDate | date: 'short' }}</div>
         </div>
         <div class="stats-container">
-            <div class="stats-stat">Email</div>
-            <div class="stats-value">{{savedEmail}}</div>
+          <div class="stats-stat">Email</div>
+          <div class="stats-value">{{ savedEmail }}</div>
         </div>
-            <div class="button-container transparent">
-                <div class="button extended enhanced" (click)="Logout()">Log Out</div>
-            </div>
-    </div>
-}
-</section>
-
+        <div class="button-container transparent">
+          <div class="button extended enhanced" (click)="Logout()">Log Out</div>
+        </div>
+      </div>
+    }
+  </section>
+</div>

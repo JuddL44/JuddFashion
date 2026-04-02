@@ -2,9 +2,9 @@
   <div class="navbar-container">
     <div class="navbar-brand">
       <a routerLink="/">{{ brandName }}</a>
-      <nav class ="navbar-motto">{{ motto }}</nav>
+      <nav class="navbar-motto">{{ motto }}</nav>
     </div>
-    
+
     <ul class="navbar-links">
       @for (link of navLinks; track link.path) {
         <li>
@@ -12,25 +12,25 @@
         </li>
       }
     </ul>
-    
+
     <div class="navbar-actions">
-       <button class="icon-button" routerLink="/shop">
+      <button class="icon-button" routerLink="/shop">
         <span>🔎</span>
       </button>
       <button class="icon-button" routerLink="/account">
         <span>👨‍💼</span>
       </button>
-      <button class="icon-button cart">
+      <button class="icon-button cart" routerLink="/cart">
         <span>🛒</span>
-        <span class="cart-count">0</span>
+        <span class="cart-count">{{ cartCount }}</span>
       </button>
     </div>
-    
+
     <button class="mobile-menu-button" (click)="toggleMenu()">
       <span>☰</span>
     </button>
   </div>
-  
+
   <div class="mobile-menu" [class.open]="menuOpen">
     <ul>
       @for (link of navLinks; track link.path) {
