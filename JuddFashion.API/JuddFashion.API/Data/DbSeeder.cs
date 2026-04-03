@@ -12,6 +12,258 @@ namespace JuddFashion.API.Data
             {
                 new Product
                 {
+                    Name = "Hiking Knee-Pockets",
+                    Description = "Plain Color Hiking Style Knee Pocket Pants",
+                    BasePrice = 22.99m,
+                    Category = ClothingCategory.Bottoms,
+                    Brand = "Slick Street",
+                    ImageUrl = "https://shopslickstreet.com/cdn/shop/files/Se5b3ab654b3f4d4daaa146c81f1658b7M.webp?v=1710969031",
+                    IsActive = true,
+                    Variants = new List<ProductVariant>
+                    {
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.XS,
+                            Color = "Plain",
+                            SKU = "SLST-HKP-PLAIN-XS",
+                            StockQuantity = 8,
+                            PriceAdjustment = 0m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.S,
+                            Color = "Plain",
+                            SKU = "SLST-HKP-PLAIN-S",
+                            StockQuantity = 5,
+                            PriceAdjustment = 1m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.M,
+                            Color = "Plain",
+                            SKU = "SLST-HKP-PLAIN-M",
+                            StockQuantity = 4,
+                            PriceAdjustment = 1m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.L,
+                            Color = "Plain",
+                            SKU = "SLST-HKP-PLAIN-L",
+                            StockQuantity = 7,
+                            PriceAdjustment = 2m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.XS,
+                            Color = "Black",
+                            SKU = "SLST-HKP-BLACK-XS",
+                            StockQuantity = 13,
+                            PriceAdjustment = 0m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.S,
+                            Color = "Black",
+                            SKU = "SLST-HKP-BLACK-S",
+                            StockQuantity = 2,
+                            PriceAdjustment = 1m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.M,
+                            Color = "Black",
+                            SKU = "SLST-HKP-BLACK-M",
+                            StockQuantity = 1,
+                            PriceAdjustment = 1m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.L,
+                            Color = "Black",
+                            SKU = "SLST-HKP-BLACK-L",
+                            StockQuantity = 15,
+                            PriceAdjustment = 2m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.XS,
+                            Color = "Yellow",
+                            SKU = "SLST-HKP-YELLOW-XS",
+                            StockQuantity = 0,
+                            PriceAdjustment = 2m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.S,
+                            Color = "Yellow",
+                            SKU = "SLST-HKP-YELLOW-S",
+                            StockQuantity = 4,
+                            PriceAdjustment = 3m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.M,
+                            Color = "Yellow",
+                            SKU = "SLST-HKP-YELLOW-M",
+                            StockQuantity = 14,
+                            PriceAdjustment = 3m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.L,
+                            Color = "Yellow",
+                            SKU = "SLST-HKP-YELLOW-L",
+                            StockQuantity = 1,
+                            PriceAdjustment = 5m
+                        }
+                    }
+                },
+                new Product
+                {
+                    Name = "Donkey Goggles",
+                    Description = "Orange and blue sunglasses that live to stand out from the drove.",
+                    BasePrice = 29.99m,
+                    Category = ClothingCategory.Outerwear,
+                    Brand = "goodr",
+                    ImageUrl = "https://goodr.com/cdn/shop/files/5_DONKEY_GOGGLES_Featured_7125bc59-c54b-45ee-8bb2-4e3707c8c816.jpg?crop=center&pad_color=ffffff&v=1689751010&width=1600",
+                    IsActive = true,
+                    Variants = new List<ProductVariant>
+                    {
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.M,
+                            Color = "Orange",
+                            SKU = "GDR-DOGO-ORANGE-M",
+                            StockQuantity = 8,
+                            PriceAdjustment = 0m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.M,
+                            Color = "Green",
+                            SKU = "GDR-DOGO-GREEN-M",
+                            StockQuantity = 3,
+                            PriceAdjustment = 0m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.M,
+                            Color = "Yellow",
+                            SKU = "GDR-DOGO-YELLOW-M",
+                            StockQuantity = 5,
+                            PriceAdjustment = 0m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.M,
+                            Color = "Brown",
+                            SKU = "GDR-DOGO-BROWN-M",
+                            StockQuantity = 0,
+                            PriceAdjustment = 0m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.M,
+                            Color = "White",
+                            SKU = "GDR-DOGO-WHITE-M",
+                            StockQuantity = 2,
+                            PriceAdjustment = 0m
+                        },
+                    }
+                },
+                new Product
+                {
+                    Name = "Pine Varsity Jacket",
+                    Description = "Crafted with wool & leather sleeves for warmth, comfort, and versatile style.",
+                    BasePrice = 89.99m,
+                    Category = ClothingCategory.Outerwear,
+                    Brand = "Lastwolf Apparel",
+                    ImageUrl = "https://lastwolf.us/cdn/shop/files/Pine-Varsity-jacket-3.jpg?v=1725560187&width=1024",
+                    IsActive = true,
+                    Variants = new List<ProductVariant>
+                    {
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.XS,
+                            Color = "Green",
+                            SKU = "LASTWOLF-PV-GREEN-XS",
+                            StockQuantity = 8,
+                            PriceAdjustment = 0m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.S,
+                            Color = "Green",
+                            SKU = "LASTWOLF-PV-GREEN-S",
+                            StockQuantity = 5,
+                            PriceAdjustment = 0m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.M,
+                            Color = "Green",
+                            SKU = "LASTWOLF-PV-GREEN-M",
+                            StockQuantity = 12,
+                            PriceAdjustment = 3m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.L,
+                            Color = "Green",
+                            SKU = "LASTWOLF-PV-GREEN-L",
+                            StockQuantity = 2,
+                            PriceAdjustment = 5m
+                        }
+                    }
+                },
+                new Product
+                {
+                    Name = "Air Sneakers",
+                    Description = "Black Cushion Comfort Shoes Lace Up Casual Shoe For Men",
+                    BasePrice = 39.99m,
+                    Category = ClothingCategory.Footwear,
+                    Brand = "Basoles",
+                    ImageUrl = "https://i.ebayimg.com/images/g/JMQAAOSwW1dmudFt/s-l1200.jpg",
+                    IsActive = true,
+                    Variants = new List<ProductVariant>
+                    {
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.XS,
+                            Color = "Black",
+                            SKU = "BASOLES-AIRS-BLACK-XS",
+                            StockQuantity = 3,
+                            PriceAdjustment = 0m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.S,
+                            Color = "White",
+                            SKU = "BASOLES-AIRS-WHITE-S",
+                            StockQuantity = 15,
+                            PriceAdjustment = 10m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.M,
+                            Color = "White",
+                            SKU = "BASOLES-AIRS-WHITE-M",
+                            StockQuantity = 4,
+                            PriceAdjustment = 12m
+                        },
+                        new ProductVariant
+                        {
+                            Size = ClothingSize.L,
+                            Color = "Black",
+                            SKU = "BASOLES-AIRS-BLACK-L",
+                            StockQuantity = 23,
+                            PriceAdjustment = 0m
+                        }
+                    }
+                },
+                new Product
+                {
                     Name = "Snorlax Hoodie",
                     Description = "100% cotton hoodie with Snorlax design",
                     BasePrice = 59.99m,
