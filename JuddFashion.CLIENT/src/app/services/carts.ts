@@ -84,6 +84,20 @@ export class Carts {
       );
   }
 
+  checkout(): Observable<CheckoutResult> {
+    return this.http
+      .post<CheckoutResult>(`${this.apiUrl}/checkout`, null, {
+        headers: this.getHeaders(),
+      })
+      .pipe(
+        tap((result) => {
+          if (result.success) {
+            this.cartSubject.next(null);
+          }
+        }),
+      );
+  }
+
   getCart(): Cart | null {
     return this.cartSubject.value;
   }
@@ -118,4 +132,11 @@ interface Cart {
 interface AddToCartRequest {
   productVariantId: number;
   quantity: number;
+}
+
+interface CheckoutResult {
+  success: boolean;
+  message: string;
+  outOfStockItems: string[];
+  totalAmount: number;
 }

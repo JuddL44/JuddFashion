@@ -16,9 +16,17 @@ export class Cart implements OnInit {
   authService = inject(Auth);
 
   cart$ = this.cartService.cart$;
+
+  username?: string = '';
+  checkoutMessage: string = '';
+
+  checkingOut: boolean = false;
+
+  recentTotal: number = 0;
+  recentItems: number = 0;
+  cartItems: number = 0;
   taxPercentage: number = 0.072;
   subtotal: number = 0;
-  username?: string = '';
 
   ngOnInit() {
     this.cartService.loadCart();
@@ -27,6 +35,7 @@ export class Cart implements OnInit {
     this.cart$.subscribe((cart) => {
       if (cart) {
         this.subtotal = cart.totalPrice;
+        this.cartItems = cart.items.length;
       }
     });
   }
@@ -58,6 +67,27 @@ export class Cart implements OnInit {
     this.cartService.clearCart().subscribe();
   }
 
-  link: string =
-    'https://cdn.discordapp.com/attachments/1453198131343921287/1487617771830513674/63261302-4519-455d-b458-0c7571d87392.png?ex=69ce68c3&is=69cd1743&hm=1500a6e92160eb757123d46bd88154e16aa30e1eba7a3e5081f5c9a4184d85fc&';
+  checkoutCart() {
+    if (this.checkingOut) return;
+
+    this.checkingOut = true;
+    this.recentItems = this.cartItems;
+
+    this.cartService.checkout().subscribe({
+      next: (result) => {
+        if (result.success) {
+          this.subtotal = 0;
+          this.recentTotal = Number(result.totalAmount.toFixed(2));
+          this.checkoutMessage = '';
+        } else {
+          this.checkoutMessage = result.message;
+        }
+        this.checkingOut = false;
+      },
+      error: (error) => {
+        this.checkoutMessage = error.error?.message || 'Checkout failed. Please try again.';
+        this.checkingOut = false;
+      },
+    });
+  }
 }

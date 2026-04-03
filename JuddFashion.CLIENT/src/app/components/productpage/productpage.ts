@@ -83,6 +83,7 @@ export class Productpage implements OnInit {
     }
     this.currentPrice = prod?.finalPrice.toString();
     this.currentVariant = prod ?? null;
+    this.addedToCart = false;
   }
 
   AddToCart() {
@@ -98,11 +99,12 @@ export class Productpage implements OnInit {
         return;
       }
       this.addedToCart = true;
-
+      this.cdr.detectChanges();
       this.cartService.addToCart(this.currentVariant?.id, 1).subscribe({
         next: (cart) => {
           setTimeout(() => {
             this.addedToCart = false;
+            this.cdr.detectChanges();
           }, 2000);
         },
         error: (error) => {

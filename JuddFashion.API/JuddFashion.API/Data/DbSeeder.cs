@@ -145,7 +145,7 @@ namespace JuddFashion.API.Data
                         }
                     }
                 },
-                new Product 
+                new Product
                 {
                     Name = "566 Cloud 9 Hoodie",
                     Description = "80% fleece cotton hoodie, relaxed fit",

@@ -87,7 +87,7 @@ namespace JuddFashion.API.Services
         {
             var cart = await _context.Carts.Include(c => c.CartItems).FirstOrDefaultAsync(c => c.UserId == userId);
             if (cart == null) { return null; }
-            
+
             var cartItem = cart.CartItems.FirstOrDefault(ci => ci.Id == cartItemId);
             if (cartItem == null) { return null; }
 
@@ -105,6 +105,54 @@ namespace JuddFashion.API.Services
             cart = await _context.Carts.Include(c => c.CartItems).ThenInclude(ci => ci.ProductVariant).ThenInclude(pv => pv.Product).FirstOrDefaultAsync(c => c.Id == cart.Id);
 
             return MapToCartDTO(cart!);
+        }
+
+        public async Task<CheckoutResultDTO> Checkout(int userId)
+        {
+            var cart = await _context.Carts.Include(c => c.CartItems).ThenInclude(ci => ci.ProductVariant).ThenInclude(pv => pv.Product).FirstOrDefaultAsync(c => c.UserId == userId);
+            if (cart == null || !cart.CartItems.Any())
+            {
+                return new CheckoutResultDTO { Success = false, Message = "Cart is empty." };
+            }
+            ;
+            var outOfStockItems = new List<string>();
+
+            foreach (var item in cart.CartItems)
+            {
+                if (item.Quantity > item.ProductVariant.StockQuantity)
+                {
+                    outOfStockItems.Add($"{item.ProductVariant.Product.Name} ({item.ProductVariant.Size}, {item.ProductVariant.Color})");
+                }
+            }
+
+            if (outOfStockItems.Any())
+            {
+                return new CheckoutResultDTO
+                {
+                    Success = false,
+                    Message = "Some items are out of stock: " + string.Join(", ", outOfStockItems)
+                };
+            }
+
+            decimal totalAmount = 0;
+
+            foreach (var item in cart.CartItems)
+            {
+                item.ProductVariant.StockQuantity -= item.Quantity;
+                totalAmount += (item.ProductVariant.Product.BasePrice + (item.ProductVariant.PriceAdjustment ?? 0m)) * item.Quantity;
+            }
+
+            cart.CartItems.Clear();
+            cart.UpdatedAt = DateTime.UtcNow;
+
+            await _context.SaveChangesAsync();
+
+            return new CheckoutResultDTO
+            {
+                Success = true,
+                Message = "Order placed successfully!",
+                TotalAmount = totalAmount
+            };
         }
 
         private CartDTO MapToCartDTO(Cart cart)

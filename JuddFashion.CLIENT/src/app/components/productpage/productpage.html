@@ -1,5 +1,5 @@
 <div class="home-container">
-  <section class="hero extended flow-product">
+  <section class="hero flow extended">
     <div class="item-container">
       <div class="item-container-case">
         <div class="tag-container">
@@ -18,7 +18,7 @@
             <div class="type-container">
               @for (prod of allColors; track $index) {
                 @if (currentColor === prod) {
-                  <div class="color-type" style="color: black">{{ prod }}</div>
+                  <div class="color-type selected">{{ prod }}</div>
                 } @else {
                   <div class="color-type" (click)="ChangeColor(prod)">{{ prod }}</div>
                 }
@@ -27,7 +27,9 @@
             <div class="type-container">
               @for (size of allSizes; track $index) {
                 @if (currentSize === size) {
-                  <div class="color-type" style="color: black">{{ size }}</div>
+                  <div class="color-type selected">
+                    {{ size }}
+                  </div>
                 } @else {
                   <div class="color-type" (click)="ChangeSize(size)">{{ size }}</div>
                 }
@@ -42,9 +44,15 @@
         </div>
       </div>
       @if (!addedToCart) {
-        <div class="cart" (click)="AddToCart()">🛒</div>
+        <div class="cart" (click)="AddToCart()">
+          🛒
+          <div class="text pre">Add To Cart</div>
+        </div>
       } @else {
-        <div class="cart confirmed">✅</div>
+        <div class="cart confirmed">
+          ✅
+          <div class="text confirmed">Added!</div>
+        </div>
       }
     </div>
   </section>

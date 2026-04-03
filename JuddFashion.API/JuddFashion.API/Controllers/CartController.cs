@@ -9,14 +9,14 @@ namespace JuddFashion.API.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Authorize]
-    public class CartController: ControllerBase
+    public class CartController : ControllerBase
     {
         private readonly ICartService _cartService;
+
         public CartController(ICartService cartService)
         {
             _cartService = cartService;
         }
-
 
         [HttpGet] // - /api/cart
         public async Task<ActionResult<CartDTO>> GetCart()
@@ -36,6 +36,19 @@ namespace JuddFashion.API.Controllers
             return Ok(cart);
         }
 
+        [HttpPost("checkout")] // - /api/checkout
+        public async Task<ActionResult<CheckoutResultDTO>> Checkout()
+        {
+            var userId = GetUserId();
+            var result = await _cartService.Checkout(userId);
+
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
+        }
 
         [HttpPut("{cartItemId}")] // - /api/cart/(cartItemId)
         public async Task<ActionResult<CartDTO>> UpdateCartItem(int cartItemId, [FromQuery] int quantity)
@@ -46,7 +59,6 @@ namespace JuddFashion.API.Controllers
             return Ok(cart);
         }
 
-
         [HttpDelete("{cartItemId}")] // - /api/cart/(cartItemId)
         public async Task<ActionResult> RemoveFromCart(int cartItemId)
         {
@@ -55,7 +67,6 @@ namespace JuddFashion.API.Controllers
             if (!success) { return BadRequest(new { message = "Cart item not found" }); }
             return NoContent();
         }
-
 
         [HttpDelete("clear")]
         public async Task<ActionResult> ClearCart()

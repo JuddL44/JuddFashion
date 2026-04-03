@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 .product-card {
   background: #fff;
   border-radius: 24px;
@@ -63,7 +64,12 @@ body {
 
 .hero {
   height: 500px;
-  background: linear-gradient(135deg, #4bdafe 0%, #c68fe8 70%);
+  background: radial-gradient(
+    circle,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(97, 81, 214, 1) 50%,
+    rgba(175, 124, 247, 1) 100%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,53 +83,15 @@ body {
     padding-top: 4rem;
   }
 
-  &.flow-sign-in {
-    background: radial-gradient(
-      circle,
-      hsla(260, 100%, 90%, 1) 0%,
-      hsla(15, 26%, 88%, 1) 19%,
-      hsla(200, 100%, 85%, 1) 35%,
-      hsla(193, 59%, 66%, 1) 63%,
-      hsla(323, 100%, 92%, 1) 84%,
-      hsla(56, 83%, 82%, 1) 100%
-    );
-    background-size: 800% 800%;
-    animation: gradientFlow 100s ease infinite;
-  }
-
-  &.flow-product {
-    background: radial-gradient(
-      circle,
-      hsla(196, 100%, 74%, 1) 0%,
-      hsla(58, 77%, 50%, 1) 20%,
-      hsla(242, 100%, 87%, 1) 37%,
-      hsla(149, 78%, 77%, 1) 63%,
-      hsla(281, 100%, 79%, 1) 100%
-    );
-    background-size: 800% 800%;
-    animation: gradientFlow 60s ease infinite;
-  }
-
-  &.flow-cart {
+  &.flow {
     background: radial-gradient(
       circle,
       rgba(63, 94, 251, 1) 0%,
-      rgba(97, 81, 214, 1) 20%,
-      rgba(175, 124, 247, 1) 46%,
-      rgba(102, 212, 201, 1) 57%,
-      rgba(141, 191, 197, 1) 70%,
-      rgba(224, 121, 188, 1) 89%,
-      rgba(252, 70, 107, 1) 100%
+      rgba(97, 81, 214, 1) 50%,
+      rgba(175, 124, 247, 1) 100%
     );
     background-size: 800% 800%;
     animation: gradientFlow 90s ease infinite;
-  }
-
-  &.contact {
-    background: linear-gradient(341deg, #aca5fa 0%, #2bbcd9 48%, #ff54c0 100%);
-    height: 900px;
-    align-items: flex-start;
-    padding-top: 4rem;
   }
 
   .hero-content {

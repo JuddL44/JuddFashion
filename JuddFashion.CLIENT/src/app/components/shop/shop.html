@@ -1,8 +1,5 @@
 <div class="home-container">
-  <section
-    class="hero"
-    [style.background]="'linear-gradient(335deg, #978EF5 7%, #57C1C7 62%, #F7A1BF 100%)'"
-  >
+  <section class="hero flow">
     <div class="hero-content">
       <h1>{{ heroTitle }}</h1>
       <p>{{ heroSubtitle }}</p>
@@ -15,7 +12,7 @@
             <button
               class="cta-button"
               (click)="applyFilter(tab, `filter`)"
-              style="background-color: #eed4ff; color: #2a87c5; border-radius: 13px"
+              style="background: #eed4ff; box-shadow: 0 0 7px gold"
             >
               {{ tab }}
             </button>
@@ -37,7 +34,7 @@
         @if (this.currentProductSort === 'price_asc') {
           <button
             class="sort-by-button"
-            style="background-color: #eed4ff; color: #2a87c5; border-radius: 13px"
+            style="background: #eed4ff; box-shadow: 0 0 7px gold"
             (click)="applyFilter(`price_asc`, `sort`)"
           >
             Price ⬆️
@@ -51,7 +48,7 @@
         @if (this.currentProductSort === 'price_desc') {
           <button
             class="sort-by-button"
-            style="background-color: #eed4ff; color: #2a87c5; border-radius: 13px"
+            style="background: #eed4ff; box-shadow: 0 0 7px gold"
             (click)="applyFilter(`price_desc`, `sort`)"
           >
             Price ⬇️
@@ -65,7 +62,7 @@
         @if (this.currentProductSort === 'name') {
           <button
             class="sort-by-button"
-            style="background-color: #eed4ff; color: #2a87c5; border-radius: 13px"
+            style="background: #eed4ff; box-shadow: 0 0 7px gold"
             (click)="applyFilter(`name`, `sort`)"
           >
             Name
@@ -77,7 +74,7 @@
         @if (this.currentProductSort === 'newest') {
           <button
             class="sort-by-button"
-            style="background-color: #eed4ff; color: #2a87c5; border-radius: 13px"
+            style="background: #eed4ff; box-shadow: 0 0 7px gold"
             (click)="applyFilter(`newest`, `sort`)"
           >
             Newest

@@ -12,9 +12,19 @@
   align-items: left;
   align-content: center;
   justify-content: center;
+  &.purchased {
+    font-size: 2rem;
+    border-radius: 18px;
+    .total {
+      color: gold;
+      font-size: 1.2rem;
+      font-weight: bolder;
+    }
+  }
 }
 
 .checkout {
+  margin-bottom: 1.5rem;
   border-radius: 14px;
   background: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
@@ -22,7 +32,7 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   width: 20rem;
-  height: 8rem;
+  height: auto;
   margin-top: 1rem;
   margin-left: 25%;
   display: flex;
@@ -30,6 +40,11 @@
   align-items: center;
   align-content: center;
   justify-content: center;
+  font-weight: bolder;
+  padding: 1rem;
+  .error {
+    font-size: 0.9rem;
+  }
   .button {
     border-radius: 30px;
     background: rgba(0, 0, 0, 0.3);
@@ -41,9 +56,17 @@
     height: 4rem;
     font-size: 1.3rem;
     text-align: center;
+    align-content: center;
+    cursor: pointer;
+    display: flex;
+    font-weight: none;
+    color: white;
     align-items: center;
     justify-content: center;
-    align-content: center;
+    &:hover {
+      background: rgba(0, 0, 0, 0.5);
+      transform: scale(1.02);
+    }
   }
 }
 
@@ -117,7 +140,7 @@
     border-radius: 12px;
     width: 8rem;
     height: 8rem;
-    box-shadow: 0 0px 5px aqua;
+    box-shadow: 0 0px 5px gold;
     object-fit: cover;
   }
   &.no-items {
@@ -225,16 +248,16 @@
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  width: auto + 2rem;
+  width: 5rem;
   max-width: 5rem;
   padding: 0 1rem;
   height: 1.6rem;
-  font-size: 0.8rem;
   align-items: center;
   align-content: center;
   text-align: center;
   font-weight: bolder;
-  white-space: wrap;
+  font-size: clamp(0.1rem, 1vw, 0.8rem);
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -242,17 +265,29 @@
 .cancel {
   width: 2.3rem;
   height: 2.3rem;
-  display: flex;
-  justify-content: center;
   text-align: center;
-  align-items: center;
   align-content: center;
-  border-radius: 30px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  line-height: 2;
+  border-radius: 50%;
   background: red;
   font-size: 1.5rem;
+  font-display: block;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  padding-top: 1px;
+  user-select: none;
+  cursor: pointer;
+  &:hover {
+    background: rgba(255, 0, 0, 0.4);
+    transform: scale(1.02);
+  }
 }
 
 .incrementer {
+  padding-bottom: 0.3rem;
   width: 8rem;
   height: 2.5rem;
   display: flex;
@@ -260,10 +295,9 @@
   text-align: center;
   align-items: center;
   align-content: center;
-  gap: 1rem;
+  gap: 0.2rem;
 
   .button {
-    color: black;
     text-align: center;
     align-content: center;
     align-items: center;
@@ -271,7 +305,17 @@
     width: 2.5rem;
     height: 2.5rem;
     display: flex;
-    font-size: 1.6rem;
+    font-size: 2rem;
+    font-display: block;
+    font-family: Arial, sans-serif;
+    padding-top: 0.4rem;
+    color: white;
+    user-select: none;
+    cursor: pointer;
+    &:hover {
+      color: gold;
+      transform: scale(1.02);
+    }
   }
   .quantity {
     display: flex;

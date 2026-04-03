@@ -1,9 +1,17 @@
 <div class="home-container">
-  <section class="hero extended flow-cart">
+  <section class="hero flow extended">
     <div class="hero-content">
-      <h1>{{ username }}'s cart</h1>
+      @if (username !== undefined) {
+        <h1>{{ username }}'s cart</h1>
+      }
       @if (subtotal === 0) {
-        <div class="">No items in your cart.</div>
+        <div class="">
+          {{
+            username !== undefined
+              ? 'All of your wanted products.'
+              : 'You must be logged in to view your cart.'
+          }}
+        </div>
       } @else {
         <p>All of your items</p>
         @if (cart$ | async; as cart) {
@@ -32,11 +40,11 @@
                       <div class="tag">{{ item.color }}</div>
                       <div class="tag">{{ item.size }}</div>
                     </div>
-                    <div class="right-container extended backlit">
+                    <div class="right-container extended">
                       <div class="incrementer">
-                        <div class="button" (click)="updateQuantity(item.id, -1)">⬅️</div>
+                        <div class="button" (click)="updateQuantity(item.id, -1)">🢀</div>
                         <div class="quantity">{{ item.quantity }}</div>
-                        <div class="button" (click)="updateQuantity(item.id, 1)">➡️</div>
+                        <div class="button" (click)="updateQuantity(item.id, 1)">🢂</div>
                       </div>
                       <div class="cancel" (click)="removeItem(item.id)">✕</div>
                     </div>
@@ -65,8 +73,14 @@
           </div>
         </div>
         <div class="checkout">
-          <div class="button" (click)="clearCart()">Purchase</div>
-          <!-- Just clearing the cart becuase you obviously cant purchase stuff lol... unless -->
+          <div class="button" (click)="checkoutCart()">Purchase</div>
+          <div class="error">{{ checkoutMessage }}</div>
+        </div>
+      }
+      @if (recentTotal !== 0) {
+        <div class="endpoint purchased">
+          <div>✅ Your purchase was successful!</div>
+          <div class="total">{{ this.recentItems }} items - ${{ recentTotal }}</div>
         </div>
       }
     </div>
