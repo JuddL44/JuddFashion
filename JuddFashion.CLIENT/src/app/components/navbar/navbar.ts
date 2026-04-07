@@ -26,6 +26,14 @@ export class Navbar {
     { label: 'Contact', path: '/contact' },
   ];
 
+  navLinksExtended = [
+    { label: 'Home', path: '/' },
+    { label: 'Shop', path: '/shop' },
+    { label: 'Account', path: '/account' },
+    { label: 'About', path: '/about' },
+    { label: 'Contact', path: '/contact' },
+  ];
+
   menuOpen: boolean = false;
 
   toggleMenu() {

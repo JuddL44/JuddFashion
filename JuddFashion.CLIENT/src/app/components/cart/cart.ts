@@ -35,7 +35,7 @@ export class Cart implements OnInit {
     this.cart$.subscribe((cart) => {
       if (cart) {
         this.subtotal = cart.totalPrice;
-        this.cartItems = cart.items.length;
+        this.cartItems = cart.items.reduce((total, item) => total + item.quantity, 0);
       }
     });
   }
@@ -48,7 +48,7 @@ export class Cart implements OnInit {
 
     const newQuantity = item.quantity + quantity;
 
-    if (newQuantity <= 0) {
+    if (newQuantity <= 0 || newQuantity > 99) {
       return;
     }
     this.cartService.updateCartItem(cartItemId, newQuantity).subscribe();

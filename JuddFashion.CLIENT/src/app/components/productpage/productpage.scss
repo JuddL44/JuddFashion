@@ -1,7 +1,7 @@
 .item-container {
-  width: 70%;
-  height: 38rem;
-  margin: 4rem auto 0;
+  width: 92vw;
+  height: auto;
+  margin: 2rem auto 0;
   border-radius: 24px;
   background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
@@ -9,72 +9,102 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: row;
-  justify-content: left;
-  align-items: left;
-  font-size: 3rem;
+  flex-direction: column;
+  align-items: stretch;
+  font-size: clamp(1.2rem, 4vw, 3rem);
+  padding: 1.5rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .item-container {
+    width: 70%;
+    min-height: 38rem;
+    flex-direction: row;
+    padding: 0;
+    align-items: center;
+  }
 }
 
 .item-container-case {
-  padding-left: 4rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: left;
-  align-content: left;
+  align-items: flex-start;
   text-align: left;
-  gap: 1.5rem;
+  gap: 1.2rem;
   width: 100%;
-  height: 100%;
-  img {
-    width: 50%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 12px;
+  height: auto;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .item-container-case {
+    padding: 2rem 2rem 2rem 3rem;
+    /* leave room for the cart button on the right */
+    padding-right: clamp(160px, 18vw, 340px);
   }
 }
 
 .warning {
-  margin-top: -40px;
   color: gold;
   font-size: 1rem;
-  padding-left: 9rem;
   font-family:
     'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana,
     sans-serif;
-  position: fixed;
+  position: static;
+  margin-top: 0.3rem;
+  padding-left: 0;
 }
+
 .middle-container {
-  width: 50%;
-  height: 50%;
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: row;
-  justify-content: left;
-  align-items: left;
-  align-content: left;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+
+  img {
+    width: clamp(7rem, 25vw, 14rem);
+    height: clamp(7rem, 25vw, 14rem);
+    object-fit: cover;
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
 }
 
 .settings-container {
-  width: 50%;
-  height: 100%;
+  /* only take what it needs, not stretch to fill */
+  flex: 0 1 auto;
+  min-width: 0;
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .items-left {
-  padding-left: 1rem;
+  padding-left: 0.5rem;
+  font-size: clamp(1rem, 5vw, 3rem);
   &.out-of-stock {
     color: rgba(255, 0, 0, 0.5);
-    font-size: 3rem;
     font-weight: bold;
   }
 }
 
 .type-container {
-  margin-left: 1rem;
-  width: 100%;
+  /* fit-content so it doesn't stretch full width */
+  width: fit-content;
+  max-width: 100%;
   height: auto;
-  min-height: 4rem;
+  min-height: 3rem;
   padding: 0.5rem;
-  border-radius: 24px;
+  border-radius: 16px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -83,15 +113,16 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  gap: 0.5rem;
-  margin-top: 2rem;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+  margin-left: 0;
 }
 
 .color-type {
-  padding: 0.5rem 0.7rem;
-  font-size: 0.9rem;
+  padding: 0.4rem 0.6rem;
+  font-size: clamp(0.7rem, 2.5vw, 0.9rem);
   background: white;
   color: #667eea;
   border: none;
@@ -99,6 +130,7 @@
   cursor: pointer;
   font-weight: bold;
   transition: transform 0.3s;
+  white-space: nowrap;
 
   &:hover {
     transform: scale(1.05);
@@ -111,8 +143,10 @@
 }
 
 .tag-container {
-  width: 40%;
-  height: 4rem;
+  width: fit-content;
+  max-width: 100%;
+  height: auto;
+  min-height: 2.5rem;
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -121,21 +155,20 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  align-content: center;
-  font-size: 3rem;
   gap: 0.5rem;
+  font-size: 1rem;
+  padding: 0.4rem 0.8rem;
 }
 
+/* Cart: full-width bar on mobile */
 .cart {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-right: 10rem;
-  width: 300px;
-  height: 300px;
+  position: static;
+  width: 100%;
+  height: auto;
+  min-height: 5rem;
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -143,27 +176,30 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   text-align: center;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
-  align-content: center;
   align-items: center;
-  font-size: 8rem;
+  gap: 1rem;
+  font-size: clamp(2rem, 8vw, 4rem);
   cursor: pointer;
+  margin-top: 1rem;
+  flex-shrink: 0;
   transition:
     font-size 0.5s,
     box-shadow 0.5s;
+
   &:hover {
     box-shadow: 0 20px 80px rgba(56, 225, 255, 0.514);
-    font-size: 10rem;
   }
   &.confirmed {
     background: green;
     box-shadow: 0 20px 80px rgba(0, 225, 0, 0.514);
-    font-size: 10rem;
     cursor: default;
   }
   .text {
     color: white;
-    font-size: 2rem;
+    font-size: clamp(1rem, 4vw, 2rem);
     &.confirmed {
       color: lime;
       font-weight: bolder;
@@ -174,12 +210,38 @@
   }
 }
 
+/* Desktop: restore floating box on the right */
+@media (min-width: 768px) {
+  .cart {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 0;
+    width: clamp(140px, 14vw, 280px);
+    height: clamp(140px, 14vw, 280px);
+    flex-direction: column;
+    gap: 0;
+    font-size: clamp(3rem, 5vw, 7rem);
+
+    &:hover {
+      font-size: clamp(3.5rem, 6vw, 8rem);
+    }
+    &.confirmed {
+      font-size: clamp(3.5rem, 6vw, 8rem);
+    }
+    .text {
+      font-size: clamp(0.8rem, 1.2vw, 1.5rem);
+    }
+  }
+}
+
 .tag {
   text-align: center;
   font-weight: bolder;
-  width: 25%;
-  height: 50%;
-  border-radius: 24px;
+  height: auto;
+  min-height: 1.8rem;
+  border-radius: 16px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -189,25 +251,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.25rem 0.5rem;
-  font-size: clamp(0.1rem, 1vw, 0.8rem);
+  padding: 0.25rem 0.8rem;
+  font-size: clamp(0.65rem, 2vw, 0.9rem);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .titlegap {
-  gap: 0rem;
+  gap: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .brand-title {
   margin-bottom: 0.4rem;
+  font-size: clamp(1.2rem, 5vw, 3rem);
 }
 
 .brand-description {
-  font-size: 1rem;
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
 }
 
 .brand-price {
-  font-size: 3rem;
+  font-size: clamp(1.5rem, 6vw, 3rem);
 }

@@ -33,7 +33,7 @@
 
   <div class="mobile-menu" [class.open]="menuOpen">
     <ul>
-      @for (link of navLinks; track link.path) {
+      @for (link of navLinksExtended; track link.path) {
         <li>
           <a [routerLink]="link.path" (click)="toggleMenu()">{{ link.label }}</a>
         </li>
