@@ -3,6 +3,7 @@
 A modern e-commerce platform built with Angular and ASP.NET Core, featuring user authentication,
 shopping cart functionality, and real-time inventory management.
 
+🎬 [Watch the showcase video](https://youtu.be/4-zndD6ErkE)
 
 ## **Tech Stack**
 ### Frontend
