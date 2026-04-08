@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Product, ProductVariant } from '../../models/product';
 import { RouterModule } from '@angular/router';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environment/environment';
 
 @Component({
   selector: 'app-home',

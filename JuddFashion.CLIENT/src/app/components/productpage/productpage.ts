@@ -6,7 +6,7 @@ import { Product } from '../../models/product';
 import { Carts } from '../../services/carts';
 import { Auth } from '../../services/auth';
 import { ProductVariant } from '../../models/product';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environment/environment.prod';
 
 @Component({
   selector: 'app-productpage',

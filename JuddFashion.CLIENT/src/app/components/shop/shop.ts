@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Product, ProductVariant } from '../../models/product';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterLink, RouterModule } from '@angular/router';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environment/environment';
 @Component({
   selector: 'app-shop',
   standalone: true,
