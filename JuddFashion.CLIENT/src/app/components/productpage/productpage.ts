@@ -6,6 +6,7 @@ import { Product } from '../../models/product';
 import { Carts } from '../../services/carts';
 import { Auth } from '../../services/auth';
 import { ProductVariant } from '../../models/product';
+import { environment } from '../../../environments/environment.prod';
 
 @Component({
   selector: 'app-productpage',
@@ -42,7 +43,7 @@ export class Productpage implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.params['id'];
     this.identity = id;
-    this.http.get<Product>(`http://localhost:5191/api/products/${id}`).subscribe({
+    this.http.get<Product>(`${environment.apiUrl}/products/${id}`).subscribe({
       next: (product) => {
         this.product = product;
         this.loading = false;

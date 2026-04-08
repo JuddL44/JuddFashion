@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Product, ProductVariant } from '../../models/product';
 import { RouterModule } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +28,7 @@ export class Home implements OnInit {
 
   loadRandomFeaturedItems() {
     this.isLoading = true;
-    this.http.get<Product[]>('http://localhost:5191/api/products').subscribe({
+    this.http.get<Product[]>(`${environment.apiUrl}/products`).subscribe({
       next: (products) => {
         const shuffled = products.sort(() => 0.5 - Math.random());
         this.featuredProducts = shuffled.slice(0, 3);

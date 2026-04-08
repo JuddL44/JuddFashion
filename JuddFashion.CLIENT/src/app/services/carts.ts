@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Auth } from './auth';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { Auth } from './auth';
 export class Carts {
   private http = inject(HttpClient);
   private authService = inject(Auth);
-  private apiUrl = 'http://localhost:5191/api/cart';
+  private apiUrl = `${environment.apiUrl}/cart`;
 
   private cartSubject = new BehaviorSubject<Cart | null>(null);
   public cart$ = this.cartSubject.asObservable();

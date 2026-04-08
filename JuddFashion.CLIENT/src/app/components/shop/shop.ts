@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Product, ProductVariant } from '../../models/product';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterLink, RouterModule } from '@angular/router';
-
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-shop',
   standalone: true,
@@ -44,7 +44,7 @@ export class Shop implements OnInit {
 
   loadMoreProducts() {
     console.log('Loading more products' + ' ' + this.currentProductDisplay);
-    this.http.get<Product[]>(`http://localhost:5191/api/products${this.apiExtension}`).subscribe({
+    this.http.get<Product[]>(`${environment.apiUrl}/products${this.apiExtension}`).subscribe({
       next: (products) => {
         this.featuredClothingIndex += this.featuredClothingIncrement;
         this.featuredProducts = [
