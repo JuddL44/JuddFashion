@@ -1,6 +1,6 @@
 <div class="home-container">
   <section class="hero extended flow">
-    @if (!isSignedIn) {
+    @if (!isSignedIn && !loading) {
       <div class="login-container backplate">
         {{ accountTypeDisplay }}
         <div class="button-container">
@@ -98,6 +98,11 @@
         <div class="button-container transparent">
           <div class="button extended enhanced" (click)="Logout()">Log Out</div>
         </div>
+      </div>
+    }
+    @if (loading) {
+      <div class="spinner-container">
+        <div class="spinner"></div>
       </div>
     }
   </section>

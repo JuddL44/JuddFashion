@@ -55,25 +55,6 @@
       transform: rotate(360deg);
     }
   }
-  .spinner {
-    display: inline-block;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    border: 4px solid transparent;
-    border-top-color: #534ab7;
-    border-right-color: rgba(#534ab7, 0.3);
-    animation: spin 0.9s linear infinite;
-  }
-
-  .spinner-container {
-    display: flex;
-    margin-top: 7rem;
-    align-items: center;
-    justify-content: center;
-  }
 
   .load-more-products-page {
     padding-bottom: 1rem;

@@ -43,10 +43,10 @@ export class Productpage implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.params['id'];
     this.identity = id;
+    this.loading = true;
     this.http.get<Product>(`${environment.apiUrl}/products/${id}`).subscribe({
       next: (product) => {
         this.product = product;
-        this.loading = false;
         const allColors = this.product?.variants.map((p) => p.color);
         this.allColors = [...new Set(allColors)];
         this.ChangeColor(this.allColors[0]);

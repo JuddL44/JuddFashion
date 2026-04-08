@@ -1,59 +1,65 @@
 <div class="home-container">
   <section class="hero flow extended">
-    <div class="item-container">
-      <div class="item-container-case">
-        <div class="tag-container">
-          <div class="tag">{{ product?.category }}</div>
-          <div class="tag">{{ product?.brand }}</div>
-        </div>
-        <div class="middle-container">
-          <img [src]="product?.imageUrl" [alt]="product?.name" />
-          <div class="settings-container">
-            <div class="items-left" [ngClass]="{ 'out-of-stock': itemCount === 'out of stock' }">
-              {{ itemCount }}
-            </div>
-            @if (limitWarning) {
-              <div class="warning">⚠️ order soon!</div>
-            }
-            <div class="type-container">
-              @for (prod of allColors; track $index) {
-                @if (currentColor === prod) {
-                  <div class="color-type selected">{{ prod }}</div>
-                } @else {
-                  <div class="color-type" (click)="ChangeColor(prod)">{{ prod }}</div>
-                }
+    @if (!loading) {
+      <div class="item-container">
+        <div class="item-container-case">
+          <div class="tag-container">
+            <div class="tag">{{ product?.category }}</div>
+            <div class="tag">{{ product?.brand }}</div>
+          </div>
+          <div class="middle-container">
+            <img [src]="product?.imageUrl" [alt]="product?.name" />
+            <div class="settings-container">
+              <div class="items-left" [ngClass]="{ 'out-of-stock': itemCount === 'out of stock' }">
+                {{ itemCount }}
+              </div>
+              @if (limitWarning) {
+                <div class="warning">⚠️ order soon!</div>
               }
-            </div>
-            <div class="type-container">
-              @for (size of allSizes; track $index) {
-                @if (currentSize === size) {
-                  <div class="color-type selected">
-                    {{ size }}
-                  </div>
-                } @else {
-                  <div class="color-type" (click)="ChangeSize(size)">{{ size }}</div>
+              <div class="type-container">
+                @for (prod of allColors; track $index) {
+                  @if (currentColor === prod) {
+                    <div class="color-type selected">{{ prod }}</div>
+                  } @else {
+                    <div class="color-type" (click)="ChangeColor(prod)">{{ prod }}</div>
+                  }
                 }
-              }
+              </div>
+              <div class="type-container">
+                @for (size of allSizes; track $index) {
+                  @if (currentSize === size) {
+                    <div class="color-type selected">
+                      {{ size }}
+                    </div>
+                  } @else {
+                    <div class="color-type" (click)="ChangeSize(size)">{{ size }}</div>
+                  }
+                }
+              </div>
             </div>
           </div>
+          <div class="titlegap">
+            <div class="brand-title">{{ product?.name }}</div>
+            <div class="brand-description">{{ product?.description }}</div>
+            <div class="brand-price">${{ currentPrice }}</div>
+          </div>
         </div>
-        <div class="titlegap">
-          <div class="brand-title">{{ product?.name }}</div>
-          <div class="brand-description">{{ product?.description }}</div>
-          <div class="brand-price">${{ currentPrice }}</div>
-        </div>
+        @if (!addedToCart) {
+          <div class="cart" (click)="AddToCart()">
+            🛒
+            <div class="text pre">Add To Cart</div>
+          </div>
+        } @else {
+          <div class="cart confirmed">
+            ✅
+            <div class="text confirmed">Added!</div>
+          </div>
+        }
       </div>
-      @if (!addedToCart) {
-        <div class="cart" (click)="AddToCart()">
-          🛒
-          <div class="text pre">Add To Cart</div>
-        </div>
-      } @else {
-        <div class="cart confirmed">
-          ✅
-          <div class="text confirmed">Added!</div>
-        </div>
-      }
-    </div>
+    } @else {
+      <div class="spinner-container">
+        <div class="spinner"></div>
+      </div>
+    }
   </section>
 </div>

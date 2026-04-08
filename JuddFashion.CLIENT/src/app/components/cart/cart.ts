@@ -21,6 +21,7 @@ export class Cart implements OnInit {
   checkoutMessage: string = '';
 
   checkingOut: boolean = false;
+  loading: boolean = true;
 
   recentTotal: number = 0;
   recentItems: number = 0;
@@ -35,9 +36,11 @@ export class Cart implements OnInit {
     this.cart$.subscribe((cart) => {
       if (cart) {
         this.subtotal = cart.totalPrice;
+        this.loading = false;
         this.cartItems = cart.items.reduce((total, item) => total + item.quantity, 0);
       }
     });
+    this.loading = false;
   }
 
   updateQuantity(cartItemId: number, quantity: number) {
@@ -72,21 +75,24 @@ export class Cart implements OnInit {
 
     this.checkingOut = true;
     this.recentItems = this.cartItems;
-
+    this.loading = true;
     this.cartService.checkout().subscribe({
       next: (result) => {
         if (result.success) {
           this.subtotal = 0;
           this.recentTotal = Number(result.totalAmount.toFixed(2));
           this.checkoutMessage = '';
+          this.loading = false;
         } else {
           this.checkoutMessage = result.message;
+          this.loading = false;
         }
         this.checkingOut = false;
       },
       error: (error) => {
         this.checkoutMessage = error.error?.message || 'Checkout failed. Please try again.';
         this.checkingOut = false;
+        this.loading = false;
       },
     });
   }

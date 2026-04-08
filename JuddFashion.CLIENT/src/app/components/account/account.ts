@@ -23,7 +23,7 @@ export class Account {
   errorMessage: string = '';
   accountTypeDisplay: string = 'Account Sign-In';
 
-  loading: boolean = false;
+  loading: boolean = true;
   signInSelected: boolean = true;
   isSignedIn: boolean = false;
 
@@ -38,8 +38,10 @@ export class Account {
         this.savedEmail = user.email;
         this.savedDate = new Date(user.createdAt);
         this.savedUsername = user.username;
+        this.loading = false;
       } else {
         this.isSignedIn = false;
+        this.loading = false;
       }
     });
   }
@@ -64,6 +66,7 @@ export class Account {
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
         console.log('Login Successful!', response);
+        this.loading = false;
       },
       error: (error) => {
         console.error('Login failed:', error);
@@ -85,6 +88,7 @@ export class Account {
     this.authService.register(this.username, this.email, this.password).subscribe({
       next: (response) => {
         console.log('Registration successful!', response);
+        this.loading = false;
       },
       error: (error) => {
         console.error('Registration failed!', error);

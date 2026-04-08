@@ -1,88 +1,94 @@
 <div class="home-container">
   <section class="hero flow extended">
-    <div class="hero-content">
-      @if (username !== undefined) {
-        <h1>{{ username }}'s cart</h1>
-      }
-      @if (subtotal === 0) {
-        <div class="">
-          {{
-            username !== undefined
-              ? 'All of your wanted products.'
-              : 'You must be logged in to view your cart.'
-          }}
-        </div>
-      } @else {
-        <p>All of your items</p>
-        @if (cart$ | async; as cart) {
-          <div class="cta-button-container">
-            <div class="item-container">
-              @for (item of cart.items; track item.id) {
-                <div class="item-brick">
-                  <img [src]="item.productImageUrl" [alt]="item.productImageUrl" />
-                  <div class="text-container">
-                    <div class="text">
-                      <div class="truncate">{{ item.productName }}</div>
-                    </div>
-                    <div class="text description">
-                      <div class="truncate">{{ item.productDescription }}</div>
-                    </div>
-                    <div class="text description price">
-                      <div class="truncate">${{ (item.price * item.quantity).toFixed(2) }}</div>
-                    </div>
-                  </div>
-                  <div class="text-container rightside">
-                    <div class="right-container backlit">
-                      <div class="tag">{{ item.brand }}</div>
-                      <div class="tag">{{ item.category }}</div>
-                    </div>
-                    <div class="right-container backlit">
-                      <div class="tag">{{ item.color }}</div>
-                      <div class="tag">{{ item.size }}</div>
-                    </div>
-                    <div class="right-container extended">
-                      <div class="incrementer">
-                        <div class="button" (click)="updateQuantity(item.id, -1)">🢀</div>
-                        <div class="quantity">{{ item.quantity }}</div>
-                        <div class="button" (click)="updateQuantity(item.id, 1)">🢂</div>
+    @if (!loading) {
+      <div class="hero-content">
+        @if (username !== undefined) {
+          <h1>{{ username }}'s cart</h1>
+        }
+        @if (subtotal === 0) {
+          <div class="">
+            {{
+              username !== undefined
+                ? 'All of your wanted products.'
+                : 'You must be logged in to view your cart.'
+            }}
+          </div>
+        } @else {
+          <p>All of your items</p>
+          @if (cart$ | async; as cart) {
+            <div class="cta-button-container">
+              <div class="item-container">
+                @for (item of cart.items; track item.id) {
+                  <div class="item-brick">
+                    <img [src]="item.productImageUrl" [alt]="item.productImageUrl" />
+                    <div class="text-container">
+                      <div class="text">
+                        <div class="truncate">{{ item.productName }}</div>
                       </div>
-                      <div class="cancel" (click)="removeItem(item.id)">✕</div>
+                      <div class="text description">
+                        <div class="truncate">{{ item.productDescription }}</div>
+                      </div>
+                      <div class="text description price">
+                        <div class="truncate">${{ (item.price * item.quantity).toFixed(2) }}</div>
+                      </div>
+                    </div>
+                    <div class="text-container rightside">
+                      <div class="right-container backlit">
+                        <div class="tag">{{ item.brand }}</div>
+                        <div class="tag">{{ item.category }}</div>
+                      </div>
+                      <div class="right-container backlit">
+                        <div class="tag">{{ item.color }}</div>
+                        <div class="tag">{{ item.size }}</div>
+                      </div>
+                      <div class="right-container extended">
+                        <div class="incrementer">
+                          <div class="button" (click)="updateQuantity(item.id, -1)">🢀</div>
+                          <div class="quantity">{{ item.quantity }}</div>
+                          <div class="button" (click)="updateQuantity(item.id, 1)">🢂</div>
+                        </div>
+                        <div class="cancel" (click)="removeItem(item.id)">✕</div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              }
+                }
+              </div>
             </div>
+          }
+        }
+        @if (subtotal !== 0) {
+          <div class="endpoint">
+            <div class="price-container">
+              <div class="price-text bold">Price</div>
+              <div class="price-text value">${{ subtotal }}</div>
+            </div>
+            <div class="price-container">
+              <div class="price-text tax bold">Tax</div>
+              <div class="price-text value">${{ (subtotal * taxPercentage).toFixed(2) }}</div>
+            </div>
+            <div class="price-container clear">
+              <div class="price-text bold">Total</div>
+              <div class="price-text value bold">
+                ${{ (subtotal + taxPercentage * subtotal).toFixed(2) }}
+              </div>
+            </div>
+          </div>
+          <div class="checkout">
+            <div class="button" (click)="checkoutCart()">Purchase</div>
+            <div class="error">{{ checkoutMessage }}</div>
           </div>
         }
-      }
-      @if (subtotal !== 0) {
-        <div class="endpoint">
-          <div class="price-container">
-            <div class="price-text bold">Price</div>
-            <div class="price-text value">${{ subtotal }}</div>
+        @if (recentTotal !== 0) {
+          <div class="endpoint purchased">
+            <div>✅ Your purchase was successful!</div>
+            <div class="total">{{ this.recentItems }} items - ${{ recentTotal }}</div>
           </div>
-          <div class="price-container">
-            <div class="price-text tax bold">Tax</div>
-            <div class="price-text value">${{ (subtotal * taxPercentage).toFixed(2) }}</div>
-          </div>
-          <div class="price-container clear">
-            <div class="price-text bold">Total</div>
-            <div class="price-text value bold">
-              ${{ (subtotal + taxPercentage * subtotal).toFixed(2) }}
-            </div>
-          </div>
-        </div>
-        <div class="checkout">
-          <div class="button" (click)="checkoutCart()">Purchase</div>
-          <div class="error">{{ checkoutMessage }}</div>
-        </div>
-      }
-      @if (recentTotal !== 0) {
-        <div class="endpoint purchased">
-          <div>✅ Your purchase was successful!</div>
-          <div class="total">{{ this.recentItems }} items - ${{ recentTotal }}</div>
-        </div>
-      }
-    </div>
+        }
+      </div>
+    } @else {
+      <div class="spinner-container">
+        <div class="spinner"></div>
+      </div>
+    }
   </section>
 </div>
