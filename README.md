@@ -3,6 +3,8 @@ A modern e-commerce platform built with Angular and ASP.NET Core, featuring user
 shopping cart functionality, and real-time inventory management.
 
 🌐 [Live Demo](https://purple-rock-0b231a60f.1.azurestaticapps.net) | 🎬 [Watch the showcase video](https://youtu.be/4-zndD6ErkE)
+> ⚠️ **Heads up:** The API is hosted on Azure's free tier which spins down after inactivity. 
+> If products don't load on first visit, wait 30-60 seconds and refresh. It's just waking up!
 
 ## **Tech Stack**
 ### Frontend
@@ -32,6 +34,9 @@ The application is fully deployed to Microsoft Azure with a live database:
 All data is persisted in a live Azure SQL Database — registered accounts, cart items, and inventory are all real and stored in the cloud.
 
 🌐 [Live Demo](https://purple-rock-0b231a60f.1.azurestaticapps.net) | ⚙️ [Live API](https://juddfashion-api-bghydwbue2hff8b9.centralus-01.azurewebsites.net/api/products)
+> ⚠️ **Heads up:** The API is hosted on Azure's free tier which spins down after inactivity. 
+> If products don't load on first visit, wait 30-60 seconds and refresh. It's just waking up!
+
 ## **Prerequisites** (for running locally)
 - Node.js (v18+)
 - .NET 8 SDK
